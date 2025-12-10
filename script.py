@@ -11,7 +11,7 @@ def check_internet() -> None:
         else:
             print('0')
     except Exception:
-        write_result("0")
+        print('An error occured')
 
 if __name__ == "__main__":
     check_internet()
