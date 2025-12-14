@@ -20,11 +20,11 @@ if __name__ == "__main__":
     html = currencyFetcher.get_html('https://politsim.ru/semenar_update_currency_rates_test.php')
     if html is None:
         raise RuntimeError(fancy_text)
-    
+
     data = currencyFetcher.get_data(html)
     if data is None:
         raise RuntimeError(fancy_text)
-    
-    database = dbFetcher.connect_to_db(*credentials)
+
+    database = dbFetcher.connect_to_db(**credentials)
     if database is None:
         raise RuntimeError(fancy_text)
