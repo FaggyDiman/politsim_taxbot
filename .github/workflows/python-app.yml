@@ -28,4 +28,4 @@ jobs:
 
     - name: Run your Python script
       run: |
-        python -m parsers.dbFetcher.py
+        python -m main
