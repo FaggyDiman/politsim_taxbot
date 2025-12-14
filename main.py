@@ -32,3 +32,5 @@ if __name__ == "__main__":
     inventories = dbFetcher.fetch_inventories(database)
     if inventories is None:
         raise RuntimeError(fancy_text)
+    
+    print(inventories)

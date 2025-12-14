@@ -65,5 +65,6 @@ def fetch_inventories(connection: pymysql.connect) -> (list[dict] | None):
             user_dict.update(dict(item_counter))
             result.append(user_dict)
 
+    print('All inventories are succesfully fetched!')
     return result
 
