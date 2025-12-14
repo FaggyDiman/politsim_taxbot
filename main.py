@@ -28,3 +28,7 @@ if __name__ == "__main__":
     database = dbFetcher.connect_to_db(**credentials)
     if database is None:
         raise RuntimeError(fancy_text)
+    
+    inventories = dbFetcher.fetch_inventories(database)
+    if inventories is None:
+        raise RuntimeError(fancy_text)
