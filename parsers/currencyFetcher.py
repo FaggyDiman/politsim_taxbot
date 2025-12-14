@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 print('currencyFetcher initialized...')
 
-def get_html(url: str) -> Optional[str]: #Getting url HTML raw txt
+def get_html(url: str) -> Optional[str]: #Fetching url HTML raw txt
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -21,7 +21,7 @@ def get_html(url: str) -> Optional[str]: #Getting url HTML raw txt
         print(f"Error occured while trying to get HTML from {url}: {e}")
         return None
 
-def get_data(html: str) -> Optional[List[dict]]:
+def get_data(html: str) -> Optional[List[dict]]: #Getting list of dictionaries.
 
     soup = BeautifulSoup(html, "html.parser")
     currency_p = soup.find("p", string=lambda t: t and "Идентификатор валюты: 3" in t)
@@ -44,9 +44,7 @@ def get_data(html: str) -> Optional[List[dict]]:
         link_text = cols[0].get_text()
         if "(#" in link_text:
             user_id = link_text.split("(#")[1].split(")")[0].strip()
-        else:
-            user_id = None
-
+            
         wealth = cols[1].get_text().strip()
 
         result.append({
