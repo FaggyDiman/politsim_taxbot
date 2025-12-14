@@ -9,6 +9,7 @@ from collections import defaultdict, Counter
 print('dbFetcher initialized...')
 
 def connect_to_db(host: str, user: str, password: str, database: str) -> (pymysql.connect | None):
+    print('Connecting to the database...')
     connection = pymysql.connect(host=host,
                              user=user,
                              password=password,
