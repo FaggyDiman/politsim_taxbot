@@ -46,12 +46,20 @@ def fetch_inventories(connection: pymysql.connect) -> (list[dict] | None):
             except Exception as e:
                 print(f"Failed to decode JSON for user {user_id}: {e}")
                 return None
-
+            
             item_counter = Counter()
-            for purchase in json_data.values():
-                item_id = purchase.get('item_id')
-                if item_id is not None:
-                    item_counter[item_id] += 1
+
+            if isinstance(json_data, list):
+                for purchase in json_data:
+                    item_id = purchase.get('item_id')
+                    if item_id is not None:
+                        item_counter[item_id] += 1
+
+            elif isinstance(json_data, dict):
+                for purchase in json_data.values():
+                    item_id = purchase.get('item_id')
+                    if item_id is not None:
+                        item_counter[item_id] += 1
 
             user_dict = {'user_id': user_id}
             user_dict.update(dict(item_counter))
