@@ -4,6 +4,8 @@ Fetches value of inventories of players in XF database.
 
 import pymysql
 
+print('dbFetcher initialized...')
+
 def connect_to_db(host: str, user: str, password: str, database: str) -> pymysql.connect:
     connection = pymysql.connect(host=host,
                              user=user,
