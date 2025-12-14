@@ -1,5 +1,5 @@
 '''
-Fetches currency from Germany citizens.
+Fetches wealth from Germany citizens as list[{user_id = int, wealth = float}, ...]
 '''
 
 from typing import List, Optional
@@ -21,5 +21,36 @@ def get_html(url: str) -> Optional[str]: #Getting url HTML raw txt
         print(f"Error occured while trying to get HTML from {url}: {e}")
         return None
 
-def get_data(html: str) -> List[dict]:
-    pass
+def get_data(html: str) -> Optional[List[dict]]:
+
+    soup = BeautifulSoup(html, "html.parser")
+    currency_p = soup.find("p", string=lambda t: t and "Идентификатор валюты: 3" in t)
+    result = []
+
+    if not currency_p:
+        print('Currency header is not found')
+        return None
+    
+    table = currency_p.find_next("table")
+    if not table:
+        print('Table is not found')
+        return None
+    
+    rows = table.find_all("tr")[1:]
+    for row in rows:
+        cols = row.find_all("td")
+        if len(cols) < 2:
+            continue
+        link_text = cols[0].get_text()
+        if "(#" in link_text:
+            user_id = link_text.split("(#")[1].split(")")[0].strip()
+        else:
+            user_id = None
+
+        wealth = cols[1].get_text().strip()
+
+        result.append({
+            "user_id": user_id,
+            "wealth": wealth
+        })
+    return result
