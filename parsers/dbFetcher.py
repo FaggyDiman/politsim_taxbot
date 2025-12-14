@@ -22,10 +22,10 @@ def connect_to_db(host: str, user: str, password: str, database: str) -> (pymysq
         print("Couldn't connect to the database")
         return 0
     
-def fetch_inventories(connection: pymysql.connect) -> (list[dict] | None):
+def fetch_inventories(connection: pymysql.connect) -> (tuple[dict] | None):
     """
     Returns a list with dictionaries in it:
-    [{'user_id': 8, 62: 10, 39: 3}, ...]
+    [{'user_id': 8, 'items': {62: 10, 39: 3}}, ...]
     id of the item is key, quantity (occurences) of that item is value
     """
     result = []
@@ -61,10 +61,12 @@ def fetch_inventories(connection: pymysql.connect) -> (list[dict] | None):
                     if item_id is not None:
                         item_counter[item_id] += 1
 
-            user_dict = {'user_id': user_id}
-            user_dict.update(dict(item_counter))
+            user_dict = {
+                'user_id': user_id,
+                'items': dict(item_counter)
+            }
             result.append(user_dict)
 
     print('All inventories are succesfully fetched!')
-    return result
+    return tuple(result)
 
