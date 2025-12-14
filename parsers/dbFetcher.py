@@ -31,7 +31,7 @@ def fetch_inventories(connection: pymysql.connect) -> (list[dict] | None):
     result = []
 
     with connection.cursor() as cursor:
-        cursor.execute("SELECT user_id, dbtech_shop_purchase FROM xf_user")
+        cursor.execute("SELECT user_id, dbtech_shop_purchase FROM `xf_user`")
         rows = cursor.fetchall()
 
         for row in rows:
@@ -58,3 +58,4 @@ def fetch_inventories(connection: pymysql.connect) -> (list[dict] | None):
             result.append(user_dict)
 
     return result
+
