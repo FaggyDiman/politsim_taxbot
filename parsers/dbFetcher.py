@@ -1,4 +1,4 @@
-import publisher.apiPublisher.py
+from publisher import apiPublisher
 
 TEST_URL = "https://www.google.com"
 TIMEOUT = 3
