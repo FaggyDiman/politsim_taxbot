@@ -2,13 +2,13 @@
 Fetches wealth from Germany citizens as list[{user_id = int, wealth = float}, ...]
 '''
 
-from typing import List, Optional
+from typing import List
 import requests
 from bs4 import BeautifulSoup
 
 print('currencyFetcher initialized...')
 
-def get_html(url: str) -> Optional[str]: #Fetching url HTML raw txt
+def get_html(url: str) -> (str | None): #Fetching url HTML raw txt
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -21,7 +21,7 @@ def get_html(url: str) -> Optional[str]: #Fetching url HTML raw txt
         print(f"Error occured while trying to get HTML from {url}: {e}")
         return None
 
-def get_data(html: str) -> Optional[List[dict]]: #Getting list of dictionaries.
+def get_data(html: str) -> (List[dict] | None): #Getting list of dictionaries.
 
     soup = BeautifulSoup(html, "html.parser")
     currency_p = soup.find("p", string=lambda t: t and "Идентификатор валюты: 3" in t)

@@ -27,5 +27,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Run your Python script
+      env:
+        DB_HOST: ${{ secrets.DB_HOST }}
       run: |
         python -m main

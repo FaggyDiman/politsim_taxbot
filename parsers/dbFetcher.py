@@ -2,7 +2,7 @@
 Fetches shop items from XF database
 '''
 
-import requests
+import os
 
-print('Dummy log from dbFetcher')
-
+ab = os.getenv('DB_NAME')
+print('ab')

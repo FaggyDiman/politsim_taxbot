@@ -8,4 +8,11 @@ import publisher.apiPublisher
 
 
 html = getWealth.get_html('https://politsim.ru/semenar_update_currency_rates_test.php')
-print(getWealth.get_data(html))
+if html is not None:
+    data = getWealth.get_data(html)
+    if data is not None:
+        pass
+    else:
+        raise RuntimeError('THE END...')
+else:
+    raise RuntimeError('THE END...')
