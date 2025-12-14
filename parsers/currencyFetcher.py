@@ -18,7 +18,7 @@ def get_html(url: str) -> Optional[str]: #Getting url HTML raw txt
             print(f'Failed to get {url}')
             return None
     except Exception as e:
-        print("Error occured while trying to get HTML from {url}: {e.message}")
+        print(f"Error occured while trying to get HTML from {url}: {e.message}")
         return None
 
 def get_data(html: str) -> List[dict]:
