@@ -24,6 +24,14 @@ def get_html(url: str) -> (str | None): #Fetching url HTML raw txt
         return None
 
 def get_data(html: str) -> (List[dict] | None): #Getting list of dictionaries.
+    '''
+    Docstring for get_data
+    
+    :param html: html (probably parsed)
+    :type html: str
+    :return: list[{user_id = int, wealth = float}, ...]
+    :rtype: List[dict] | None
+    '''
     soup = BeautifulSoup(html, "html.parser")
     currency_p = soup.find("p", string=lambda t: t and "Идентификатор валюты: 3" in t)
     result = []

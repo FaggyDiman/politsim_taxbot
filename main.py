@@ -1,12 +1,13 @@
 '''
- 
 Entry point for the workflow (master module)
 '''
 
 import os
 from parsers import dbFetcher 
 from parsers import currencyFetcher
-import publisher.apiPublisher
+from parser import digestion
+from publisher import apiPublisher
+
 
 fancy_text = 'Execution stopped'
 
@@ -22,15 +23,13 @@ if __name__ == "__main__":
     if html is None:
         raise RuntimeError(fancy_text)
 
-    data = currencyFetcher.get_data(html) #getting every player's on hand money
-    if data is None:
+    on_hand_data = currencyFetcher.get_data(html) #getting every player's on hand money
+    if on_hand_data is None:
         raise RuntimeError(fancy_text)
     
     rates = currencyFetcher.get_currency_rates(html) #getting currency rates
     if rates is None:
         raise RuntimeError(fancy_text)
-
-    print(rates)
 
     database = dbFetcher.connect_to_db(**credentials) #connecting to the database
     if database is None:
@@ -40,3 +39,8 @@ if __name__ == "__main__":
     if inventories is None:
         raise RuntimeError(fancy_text)
     
+    full_data = digestion.merge_inventory_value(on_hand_data, inventories, rates) #merging data from db and semen's utilite
+    if full_data is None:
+        raise RuntimeError(fancy_text)
+    
+    print(full_data)
