@@ -43,4 +43,4 @@ jobs:
         git config user.email "github-actions@github.com"
         git add .
         git commit -m "Autosave..." || echo "No changes to commit"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/FaggyDiman/workflow-test.git HEAD:working
+        git push origin HEAD:working --force
