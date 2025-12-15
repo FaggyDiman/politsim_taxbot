@@ -54,7 +54,7 @@ def get_data(html: str) -> (List[dict] | None): #Getting list of dictionaries.
         })
     return result
 
-def get_currency_rates_dict(html: str) -> (Dict[str, float] | None):
+def get_currency_rates(html: str) -> (Dict[str, float] | None):
     soup = BeautifulSoup(html, "html.parser")
     result: Dict[str, float] = {}
 
