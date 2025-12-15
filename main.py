@@ -48,5 +48,4 @@ if __name__ == "__main__":
     last_logs = fileController.get_last_two_snapshots()
     if last_logs is None:
         print("Could not find two log files, can't proceed!")
-        raise RuntimeError(fancy_text)
         
