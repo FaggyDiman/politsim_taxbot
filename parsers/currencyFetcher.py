@@ -2,14 +2,15 @@
 Fetches wealth from Germany citizens as list[{user_id = int, wealth = float}, ...]
 '''
 
-from typing import List
+from typing import List, Dict
+import re
 import requests
 from bs4 import BeautifulSoup
 
 print('currencyFetcher initialized...')
 
 def get_html(url: str) -> (str | None): #Fetching url HTML raw txt
-    print(f'Connecting to {url}...')
+    print(f'Connecting...')
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -51,4 +52,49 @@ def get_data(html: str) -> (List[dict] | None): #Getting list of dictionaries.
             "user_id": user_id,
             "wealth": wealth
         })
+    return result
+
+def get_currency_rates_dict(html: str) -> (Dict[str, float] | None):
+    soup = BeautifulSoup(html, "html.parser")
+    result: Dict[str, float] = {}
+
+    currency_headers = soup.find_all(
+        "p",
+        string=re.compile(r"Идентификатор валюты:")
+    )
+
+    for header in currency_headers:
+        header_text = header.get_text(strip=True)
+
+        match = re.search(r"\(([^)]+)\)", header_text)
+        if not match:
+            continue
+
+        currency = match.group(1)
+
+        stats_block = header.find_next(
+            "p",
+            style=re.compile("padding-left")
+        )
+        if not stats_block:
+            continue
+
+        rate_label = stats_block.find(
+            string=re.compile(r"Расчётный курс")
+        )
+        if not rate_label:
+            continue
+
+        rate_tag = rate_label.find_next("b")
+        if not rate_tag:
+            continue
+
+        try:
+            rate = float(rate_tag.get_text())
+        except ValueError:
+            print('An error occured when tried to get currency rates')
+            return None
+        
+        result[currency] = rate
+
     return result

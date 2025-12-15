@@ -18,21 +18,25 @@ credentials = {
     }
 
 if __name__ == "__main__":
-    html = currencyFetcher.get_html('https://politsim.ru/semenar_update_currency_rates_test.php')
+    html = currencyFetcher.get_html('https://politsim.ru/semenar_update_currency_rates_test.php') #thx semen
     if html is None:
         raise RuntimeError(fancy_text)
 
-    data = currencyFetcher.get_data(html)
+    data = currencyFetcher.get_data(html) #getting every player's on hand money
     if data is None:
         raise RuntimeError(fancy_text)
+    
+    rates = currencyFetcher.get_currency_rates(html) #getting currency rates
+    if rates is None:
+        raise RuntimeError(fancy_text)
 
-    database = dbFetcher.connect_to_db(**credentials)
+    print(rates)
+
+    database = dbFetcher.connect_to_db(**credentials) #connecting to the database
     if database is None:
         raise RuntimeError(fancy_text)
     
-    inventories = dbFetcher.fetch_inventories(database)
+    inventories = dbFetcher.fetch_inventories(database) #getting every player's inventory items
     if inventories is None:
         raise RuntimeError(fancy_text)
     
-
-    print(inventories)

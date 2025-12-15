@@ -1,0 +1,16 @@
+{
+    "62": {"type": "politsim", "value": 50},
+    "32": {"type": "rub", "value": 3300},
+    "54": {"type": "politsim", "value": 10},
+    "55": {"type": "politsim", "value": 10},
+    "51": {"type": "politsim", "value": 10},
+    "53": {"type": "politsim", "value": 10},
+    "52": {"type": "politsim", "value": 10},
+    "20": {"type": "politsim", "value": 10},
+    "39": {"type": "politsim", "value": 500},
+    "38": {"type": "politsim", "value": 100},
+    "37": {"type": "mark", "value": 1000},
+    "36": {"type": "mark", "value": 500},
+    "41": {"type": "politsim", "value": 500},
+    "40": {"type": "politsim", "value": 100}
+}
