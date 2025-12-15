@@ -1,4 +1,5 @@
 '''
+ 
 Entry point for the workflow (master module)
 '''
 
@@ -33,4 +34,5 @@ if __name__ == "__main__":
     if inventories is None:
         raise RuntimeError(fancy_text)
     
+
     print(inventories)
