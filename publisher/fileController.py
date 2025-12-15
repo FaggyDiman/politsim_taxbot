@@ -8,7 +8,6 @@ etc
 print('fileController initialized...')
 
 import json
-from git import Repo
 from typing import List, Dict
 from pathlib import Path
 from datetime import date, datetime
