@@ -8,7 +8,10 @@ from parsers import currencyFetcher
 from parsers import digestion
 from publisher import apiPublisher
 from publisher import fileController
+from publisher import taxCollector
 
+THRESHOLD = 10
+TAX_RATE = 0.08
 
 fancy_text = 'Execution stopped'
 
@@ -20,6 +23,8 @@ credentials = {
     }
 
 if __name__ == "__main__":
+
+
     html = currencyFetcher.get_html('https://politsim.ru/semenar_update_currency_rates_test.php') #thx semen
     if html is None:
         raise RuntimeError(fancy_text)
@@ -31,6 +36,8 @@ if __name__ == "__main__":
     rates = currencyFetcher.get_currency_rates(html) #getting currency rates
     if rates is None:
         raise RuntimeError(fancy_text)
+    currency_rate = rates.get("mark")
+
 
     database = dbFetcher.connect_to_db(**credentials) #connecting to the database
     if database is None:
@@ -45,7 +52,10 @@ if __name__ == "__main__":
         raise RuntimeError(fancy_text)
     
     fileController.save_snapshot(full_data)
-    last_logs = fileController.get_last_two_snapshots()
+    last_logs = fileController.get_last_two_snapshots() #get two last log files to compare them
     if last_logs is None:
         print("Could not find two log files, can't proceed!")
+    else:
+        taxes = taxCollector.compute_tax(last_logs, TAX_RATE, THRESHOLD, currency_rate)
+        print(taxes)
         

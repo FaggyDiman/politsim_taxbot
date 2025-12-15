@@ -20,7 +20,7 @@ def merge_inventory_value(
     :param inventories: Result of fetch_inventories()
     :param currency_rates: Result of get_currency_rates()
     :param items_path: Path to items.json
-    :return: Updated main_data
+    :return: Updated main_data: list[{user_id = int, wealth = float}, ...]
     """
 
     
