@@ -8,6 +8,7 @@ etc
 print('fileController initialized...')
 
 import json
+from git import Repo
 from typing import List, Dict
 from pathlib import Path
 from datetime import date, datetime
@@ -32,7 +33,7 @@ def save_snapshot(data: List[dict]) -> Path:
 
     return file_path
 
-def get_last_two_snapshots() -> Dict["latest": tuple(), "previous": tuple()]:
+def get_last_two_snapshots() -> Dict:
     """
     Gives two last log files from logs path.
     
