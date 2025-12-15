@@ -5,7 +5,7 @@ Entry point for the workflow (master module)
 import os
 from parsers import dbFetcher 
 from parsers import currencyFetcher
-from parser import digestion
+from parsers import digestion
 from publisher import apiPublisher
 
 
