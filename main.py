@@ -7,6 +7,7 @@ from parsers import dbFetcher
 from parsers import currencyFetcher
 from parsers import digestion
 from publisher import apiPublisher
+from publisher import fileController
 
 
 fancy_text = 'Execution stopped'
@@ -43,4 +44,8 @@ if __name__ == "__main__":
     if full_data is None:
         raise RuntimeError(fancy_text)
     
-    print(full_data)
+    fileController.save_snapshot(full_data)
+    last_logs = fileController.get_last_two_snapshots()
+    if last_logs is None:
+        print("Could not find two log files, can't proceed!")
+        
