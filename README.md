@@ -11,10 +11,11 @@ This workflow automatically posts tax returns from Xenforo-based forums using DB
 - Creates a log file in the `YYYY-MM-DD` format.  
 - Searches for the previous log file, if available.  
 - Calculates tax based on `TAX_RATE` and `THRESHOLD`.  
-- Inserts the calculated values into the appropriate records.  
+- Inserts the calculated values into a BB-code table.
+- Makes API call to post the table in a thread.
 
 ## Usage
-The entry point is `main.py`. Constants in the file represent the credentials needed to connect to the database and post to the forum.  
+The entry point is `main.py`. Constants in the file represent the credentials needed to connect to the database and post to the forum. Repo uses Github Actions workflow to execute automatically.
 
 ### Politsim users
 *Instructions coming soon*  
