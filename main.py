@@ -14,13 +14,14 @@ THRESHOLD = 10
 TAX_RATE = 0.08
 
 fancy_text = 'Execution stopped'
-
-credentials = {
+api_key = os.getenv('API_KEY')
+db_credentials = {
     'host': os.getenv('DB_HOST'),
     'user': os.getenv('DB_USER'),
     'password': os.getenv('DB_PSWD'),
     'database':os.getenv('DB_NAME')
     }
+
 
 if __name__ == "__main__":
 
@@ -39,7 +40,7 @@ if __name__ == "__main__":
     currency_rate = rates.get("mark")
 
 
-    database = dbFetcher.connect_to_db(**credentials) #connecting to the database
+    database = dbFetcher.connect_to_db(**db_credentials) #connecting to the database
     if database is None:
         raise RuntimeError(fancy_text)
     
@@ -56,8 +57,8 @@ if __name__ == "__main__":
     if last_logs is None:
         print("Could not find two log files, can't proceed!")
     else:
-        taxes = taxCollector.compute_tax(last_logs, TAX_RATE, THRESHOLD, currency_rate)
-        print(taxes)
-        print(last_logs)
-        print(currency_rate)
+        taxes, prev_date, latest_date = taxCollector.compute_tax(last_logs, TAX_RATE, THRESHOLD, currency_rate)
+        message = apiPublisher.generate_bbcode(taxes, prev_date, latest_date)
+        print(message)
+
         

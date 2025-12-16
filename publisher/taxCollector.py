@@ -40,4 +40,4 @@ def compute_tax(files_dict: dict, tax_rate: float, threshold: float, currency_ra
             "tax_currency": round(tax / currency_rate, 2)
         })
 
-    return tax_list
+    return tax_list, prev_date, latest_date
