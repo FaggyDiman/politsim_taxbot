@@ -23,6 +23,7 @@ def compute_tax(files_dict: dict, tax_rate: float, threshold: float, currency_ra
     tax_list = []
     for entry in latest_data:
         user_id = str(entry["user_id"])
+        user_name = entry["user_name"]
         latest_wealth = entry["wealth"]
         prev_wealth = prev_wealth_dict.get(user_id, 0.0) 
 
@@ -34,7 +35,9 @@ def compute_tax(files_dict: dict, tax_rate: float, threshold: float, currency_ra
 
         tax_list.append({
             "user_id": user_id,
-            "tax": round(tax, 2) 
+            "user_name": user_name,
+            "tax_base": round(tax, 2),
+            "tax_currency": round(tax / currency_rate, 2)
         })
 
     return tax_list
