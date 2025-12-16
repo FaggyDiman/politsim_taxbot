@@ -12,15 +12,21 @@ from publisher import taxCollector
 
 THRESHOLD = 10
 TAX_RATE = 0.08
-
-fancy_text = 'Execution stopped'
-
-credentials = {
+API_KEY = os.getenv('API_KEY')
+POSTER_ID = '2139'
+DESTINATION = '7560'
+API_URL = "https://politsim.ru/api/conversation-messages/"
+DB_CREDENTIALS = {
     'host': os.getenv('DB_HOST'),
     'user': os.getenv('DB_USER'),
     'password': os.getenv('DB_PSWD'),
     'database':os.getenv('DB_NAME')
     }
+
+fancy_text = 'Execution stopped'
+
+
+
 
 if __name__ == "__main__":
 
@@ -39,7 +45,7 @@ if __name__ == "__main__":
     currency_rate = rates.get("mark")
 
 
-    database = dbFetcher.connect_to_db(**credentials) #connecting to the database
+    database = dbFetcher.connect_to_db(**DB_CREDENTIALS) #connecting to the database
     if database is None:
         raise RuntimeError(fancy_text)
     
@@ -56,8 +62,11 @@ if __name__ == "__main__":
     if last_logs is None:
         print("Can't proceed!")
     else:
-        taxes = taxCollector.compute_tax(last_logs, TAX_RATE, THRESHOLD, currency_rate)
-        print(taxes)
-        print(last_logs)
-        print(currency_rate)
+        taxes, prev_date, latest_date = taxCollector.compute_tax(last_logs, TAX_RATE, THRESHOLD, currency_rate)
+        message = apiPublisher.generate_bbcode(taxes, prev_date, latest_date)
+        api_post = apiPublisher.send_message(message, API_KEY, POSTER_ID, DESTINATION, API_URL)
+        if api_post is None:
+            raise RuntimeError(fancy_text)
+        print(api_post)
+
         

@@ -35,6 +35,7 @@ jobs:
         DB_USER: ${{ secrets.DB_USER }}
         DB_NAME: ${{ secrets.DB_NAME }}
         DB_PSWD: ${{ secrets.DB_PSWD }}
+        API_KEY: ${{ secrets.API_KEY }}
       run: |
         python -m main
         
