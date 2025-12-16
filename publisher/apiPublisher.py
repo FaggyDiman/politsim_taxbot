@@ -23,7 +23,7 @@ def generate_bbcode(tax_list, prev_date, latest_date) -> str:
 [TD style='background-color: rgb(163, 143, 132);'][CENTER][B][FONT=Times New Roman]ГРАЖДАНИН[/FONT][/B][/CENTER][/TD]
 [TD style='background-color: rgb(163, 143, 132);'][CENTER][B][FONT=Times New Roman]НАЛОГ (ЗОЛОТО)[/FONT][/B][/CENTER][/TD]
 [TD style='background-color: rgb(163, 143, 132);'][CENTER][B][FONT=Times New Roman]НАЛОГ (МАРКИ)[/FONT][/B][/CENTER][/TD]
-[/TR>
+[/TR]
 """
 
     for entry in tax_list:
@@ -32,7 +32,7 @@ def generate_bbcode(tax_list, prev_date, latest_date) -> str:
             gold_tax = entry['tax_base']
             currency_tax = entry['tax_currency']
             bb_template += f"[TR]\n[TD]{user_str}[/TD]\n[TD]{gold_tax}</TD>\n[TD]{currency_tax}[/TD]\n[/TR]\n"
-    
+
     bb_template += "[/TABLE]"
     print('Message generated!')
     return bb_template
