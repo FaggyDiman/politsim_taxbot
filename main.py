@@ -13,8 +13,8 @@ from publisher import taxCollector
 THRESHOLD = 10
 TAX_RATE = 0.08
 API_KEY = os.getenv('API_KEY')
-POSTER_ID = 2139
-DESTINATION = 7560
+POSTER_ID = '2139'
+DESTINATION = '7560'
 API_URL = "https://politsim.ru/api/conversation-messages/"
 DB_CREDENTIALS = {
     'host': os.getenv('DB_HOST'),
