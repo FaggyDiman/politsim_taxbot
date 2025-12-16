@@ -54,7 +54,7 @@ if __name__ == "__main__":
     fileController.save_snapshot(full_data)
     last_logs = fileController.get_last_two_snapshots() #get two last log files to compare them
     if last_logs is None:
-        print("Could not find two log files, can't proceed!")
+        print("Can't proceed!")
     else:
         taxes = taxCollector.compute_tax(last_logs, TAX_RATE, THRESHOLD, currency_rate)
         print(taxes)
