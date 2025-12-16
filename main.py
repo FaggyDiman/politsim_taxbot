@@ -65,6 +65,8 @@ if __name__ == "__main__":
         taxes, prev_date, latest_date = taxCollector.compute_tax(last_logs, TAX_RATE, THRESHOLD, currency_rate)
         message = apiPublisher.generate_bbcode(taxes, prev_date, latest_date)
         api_post = apiPublisher.send_message(message, API_KEY, POSTER_ID, DESTINATION, API_URL)
-        print(message)
+        if api_post is None:
+            raise RuntimeError(fancy_text)
+        print(api_post)
 
         

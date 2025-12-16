@@ -40,7 +40,7 @@ def generate_bbcode(tax_list, prev_date, latest_date) -> str:
     return message
 
 
-def send_message(message: str, api_key: str, user_id: str, topic_id: str, api_url: str) -> requests.Response:
+def send_message(message: str, api_key: str, user_id: str, topic_id: str, api_url: str) -> (requests.Response | None):
     '''
     Sends a message via API key. 
     
@@ -53,6 +53,8 @@ def send_message(message: str, api_key: str, user_id: str, topic_id: str, api_ur
     :param topic_id: Where you want to post the message
     :type topic_id: str
     '''
+    print('Sending the message...')
+
     headers = {
         "XF-Api-Key": api_key,
         "XF-Api-User": user_id
@@ -63,4 +65,12 @@ def send_message(message: str, api_key: str, user_id: str, topic_id: str, api_ur
     }
 
     response = requests.post(api_url, headers=headers, params=params)
-    return response
+
+    if response.status_code == 200:
+        print("The message was succesfuly sent!")
+        return response
+    else:
+        print(f"Error occured while sending the message: {response.status_code} — {response.text}")
+        return None
+
+
