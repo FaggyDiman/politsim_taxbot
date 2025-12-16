@@ -60,7 +60,7 @@ def send_message(message: str, api_key: str, user_id: str, topic_id: str, api_ur
         "XF-Api-User": user_id
     }
     params = {
-        "conversation_id": topic_id,
+        "thread_id": topic_id,
         "message": message
     }
 
