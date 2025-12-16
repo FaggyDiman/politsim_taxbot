@@ -30,7 +30,7 @@ def compute_tax(files_dict: dict, tax_rate: float, threshold: float, currency_ra
         wealth_diff = latest_wealth - prev_wealth
         tax = wealth_diff * tax_rate
 
-        if tax < threshold * currency_rate:
+        if tax < threshold / currency_rate:
             tax = 0.0
 
         tax_list.append({
