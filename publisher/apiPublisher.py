@@ -2,6 +2,8 @@
 Publishing table as BB-code table for XF.
 '''
 
+import requests
+
 print('apiPublisher initialized...')
 
 def generate_bbcode(tax_list, prev_date, latest_date) -> str: 
@@ -13,7 +15,7 @@ def generate_bbcode(tax_list, prev_date, latest_date) -> str:
     :rtype: str
     '''
     print('Generating message...')
-    bb_template = f"""
+    message = f"""
 [CENTER][B][FONT=Times New Roman][SIZE=22px]ФЕДЕРАЛЬНАЯ НАЛОГОВАЯ СЛУЖБА[/SIZE][/FONT][/B]
 [FONT=Times New Roman][SIZE=22px]Автоматическая налоговая декларация[/SIZE][/FONT]
 {prev_date} — {latest_date}[/CENTER]
@@ -31,8 +33,34 @@ def generate_bbcode(tax_list, prev_date, latest_date) -> str:
             user_str = f"[USER={entry['user_id']}]{entry['user_name']}[/USER]"
             gold_tax = entry['tax_base']
             currency_tax = entry['tax_currency']
-            bb_template += f"[TR]\n[TD]{user_str}[/TD]\n[TD]{gold_tax}[/TD]\n[TD]{currency_tax}[/TD]\n[/TR]\n"
+            message += f"[TR]\n[TD]{user_str}[/TD]\n[TD]{gold_tax}[/TD]\n[TD]{currency_tax}[/TD]\n[/TR]\n"
 
-    bb_template += "[/TABLE]"
+    message += "[/TABLE]"
     print('Message generated!')
-    return bb_template
+    return message
+
+
+def send_message(message: str, api_key: str, user_id: str, topic_id: str, api_url: str) -> requests.Response:
+    '''
+    Sends a message via API key. 
+    
+    :param message: A message to post
+    :type message: str
+    :param api_key: API key
+    :type api_key: str
+    :param user_id: To post as unique user. Dunno how it works with a regular API key, I use a super one.
+    :type user_id: str
+    :param topic_id: Where you want to post the message
+    :type topic_id: str
+    '''
+    headers = {
+        "XF-Api-Key": api_key,
+        "XF-Api-User": user_id
+    }
+    params = {
+        "conversation_id": topic_id,
+        "message": message
+    }
+
+    response = requests.post(api_url, headers=headers, params=params)
+    return response
