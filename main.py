@@ -14,8 +14,8 @@ THRESHOLD = 10
 TAX_RATE = 0.08
 API_KEY = os.getenv('API_KEY')
 POSTER_ID = '2139'
-DESTINATION = '7560'
-API_URL = "https://politsim.ru/api/conversation-messages/"
+DESTINATION = '8050'
+API_URL = "https://politsim.ru/api/posts/"
 DB_CREDENTIALS = {
     'host': os.getenv('DB_HOST'),
     'user': os.getenv('DB_USER'),
