@@ -67,6 +67,5 @@ if __name__ == "__main__":
         api_post = apiPublisher.send_message(message, API_KEY, POSTER_ID, DESTINATION, API_URL)
         if api_post is None:
             raise RuntimeError(fancy_text)
-        print(api_post)
 
         
