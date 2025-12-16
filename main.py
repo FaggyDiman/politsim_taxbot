@@ -58,4 +58,6 @@ if __name__ == "__main__":
     else:
         taxes = taxCollector.compute_tax(last_logs, TAX_RATE, THRESHOLD, currency_rate)
         print(taxes)
+        print(last_logs)
+        print(currency_rate)
         

@@ -8,8 +8,6 @@ import json
 from pathlib import Path
 from typing import Dict
 
-# Константы
-
 def compute_tax(files_dict: dict, tax_rate: float, threshold: float, currency_rate: float = 1) -> Dict:
     latest_date, latest_file = files_dict["latest"]
     prev_date, prev_file = files_dict["previous"]
