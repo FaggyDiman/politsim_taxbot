@@ -1,5 +1,5 @@
 '''
-Fetches wealth from Germany citizens as list[{user_id = int, wealth = float}, ...]
+Fetches wealth from Germany citizens as list[{user_id = int, user_name = str wealth = float}, ...]
 '''
 
 from typing import List, Dict
@@ -23,15 +23,7 @@ def get_html(url: str) -> (str | None): #Fetching url HTML raw txt
         print(f"Error occured while trying to get HTML from {url}: {e}")
         return None
 
-def get_data(html: str) -> (List[dict] | None): #Getting list of dictionaries.
-    '''
-    Docstring for get_data
-    
-    :param html: html (probably parsed)
-    :type html: str
-    :return: list[{user_id = int, wealth = float}, ...]
-    :rtype: List[dict] | None
-    '''
+def get_data(html: str) -> (List[dict] | None):
     soup = BeautifulSoup(html, "html.parser")
     currency_p = soup.find("p", string=lambda t: t and "Идентификатор валюты: 3" in t)
     result = []
@@ -50,16 +42,29 @@ def get_data(html: str) -> (List[dict] | None): #Getting list of dictionaries.
         cols = row.find_all("td")
         if len(cols) < 2:
             continue
-        link_text = cols[0].get_text()
-        if "(#" in link_text:
-            user_id = link_text.split("(#")[1].split(")")[0].strip()
-            
-        wealth = cols[1].get_text().strip()
+
+        account_td = cols[0]
+
+        a_tag = account_td.find("a")
+        if not a_tag:
+            continue
+        user_name = a_tag.get_text(strip=True)
+
+        # user_id
+        link_text = account_td.get_text()
+        if "(#" not in link_text:
+            continue
+        user_id = link_text.split("(#")[1].split(")")[0].strip()
+
+        # wealth
+        wealth = cols[1].get_text(strip=True)
 
         result.append({
-            "user_id": user_id,
-            "wealth": wealth
+            "user_id": int(user_id),
+            "user_name": user_name,
+            "wealth": float(wealth)
         })
+
     return result
 
 def get_currency_rates(html: str) -> (Dict[str, float] | None):

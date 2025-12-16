@@ -48,8 +48,8 @@ def get_last_two_snapshots() -> Dict:
             file_date = datetime.strptime(file.stem, "%Y-%m-%d").date()
             files_with_dates.append((file_date, file))
         except ValueError:
-            print('Please do not put socks in logs')
-            pass
+            print(f"Couldn't recognise: {file}")
+            continue
 
     if len(files_with_dates) < 2:
         print("Could not find two log files... ")
