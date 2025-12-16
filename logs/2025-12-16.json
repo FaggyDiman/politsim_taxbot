@@ -1,94 +1,117 @@
 [
   {
-    "user_id": "2299",
+    "user_id": 2299,
+    "user_name": "Booker DeWitt esq.",
     "wealth": 18857.76
   },
   {
-    "user_id": "2381",
+    "user_id": 2381,
+    "user_name": "Маркус Дангарский",
     "wealth": 15368.93
   },
   {
-    "user_id": "2473",
+    "user_id": 2473,
+    "user_name": "Richard Williams",
     "wealth": 12038.55
   },
   {
-    "user_id": "2153",
+    "user_id": 2153,
+    "user_name": "Konstantin Aushtraf",
     "wealth": 5002.24
   },
   {
-    "user_id": "1739",
+    "user_id": 1739,
+    "user_name": "Kurt Inquart-Mälaren",
     "wealth": 4000.0
   },
   {
-    "user_id": "37",
+    "user_id": 37,
+    "user_name": "Роман",
     "wealth": 1750.0
   },
   {
-    "user_id": "3",
+    "user_id": 3,
+    "user_name": "Пал Сергеич",
     "wealth": 1300.25
   },
   {
-    "user_id": "8",
+    "user_id": 8,
+    "user_name": "Matthias Mälaren",
     "wealth": 3115.62
   },
   {
-    "user_id": "332",
+    "user_id": 332,
+    "user_name": "Christopher Vouasien",
     "wealth": 2051.13
   },
   {
-    "user_id": "2139",
+    "user_id": 2139,
+    "user_name": "Герман",
     "wealth": 791.9
   },
   {
-    "user_id": "605",
+    "user_id": 605,
+    "user_name": "Romanoff",
     "wealth": 438.73
   },
   {
-    "user_id": "42",
+    "user_id": 42,
+    "user_name": "Morty",
     "wealth": 428.98
   },
   {
-    "user_id": "4",
+    "user_id": 4,
+    "user_name": "Antonio",
     "wealth": 505.46
   },
   {
-    "user_id": "4165",
+    "user_id": 4165,
+    "user_name": "Guran",
     "wealth": 44.95
   },
   {
-    "user_id": "2218",
+    "user_id": 2218,
+    "user_name": "Валериус Дангарский",
     "wealth": 11.65
   },
   {
-    "user_id": "967",
+    "user_id": 967,
+    "user_name": "Nikolay Artemov",
     "wealth": 0.0
   },
   {
-    "user_id": "1472",
+    "user_id": 1472,
+    "user_name": "Joachim Gauck",
     "wealth": 0.0
   },
   {
-    "user_id": "1492",
+    "user_id": 1492,
+    "user_name": "Noah Neumann",
     "wealth": 0.0
   },
   {
-    "user_id": "1856",
+    "user_id": 1856,
+    "user_name": "Andy Williams",
     "wealth": 0.0
   },
   {
-    "user_id": "2739",
+    "user_id": 2739,
+    "user_name": "Parshikov_Kirill",
     "wealth": 0.0
   },
   {
-    "user_id": "3848",
+    "user_id": 3848,
+    "user_name": "Владимир Александрович",
     "wealth": 100.0
   },
   {
-    "user_id": "4159",
+    "user_id": 4159,
+    "user_name": "Даниил Семëнов",
     "wealth": 0.0
   },
   {
-    "user_id": "4340",
+    "user_id": 4340,
+    "user_name": "Gustav Vouasien",
     "wealth": 0.0
   }
 ]
