@@ -59,8 +59,8 @@ def merge_inventory_value(
                 total_inventory_value += nominal_value * rate * quantity
 
         try:
-            user["wealth"] = float(user["wealth"]) + total_inventory_value
+            user["wealth"] = round(float(user["wealth"]) + total_inventory_value,2)
         except ValueError:
-            user["wealth"] = total_inventory_value
+            user["wealth"] = round(total_inventory_value,2)
 
     return main_data
