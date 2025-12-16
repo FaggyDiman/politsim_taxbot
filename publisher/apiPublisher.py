@@ -31,7 +31,7 @@ def generate_bbcode(tax_list, prev_date, latest_date) -> str:
             user_str = f"[USER={entry['user_id']}]{entry['user_name']}[/USER]"
             gold_tax = entry['tax_base']
             currency_tax = entry['tax_currency']
-            bb_template += f"[TR]\n[TD]{user_str}[/TD]\n[TD]{gold_tax}</TD>\n[TD]{currency_tax}[/TD]\n[/TR]\n"
+            bb_template += f"[TR]\n[TD]{user_str}[/TD]\n[TD]{gold_tax}[/TD]\n[TD]{currency_tax}[/TD]\n[/TR]\n"
 
     bb_template += "[/TABLE]"
     print('Message generated!')
