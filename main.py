@@ -14,8 +14,8 @@ THRESHOLD = 10
 TAX_RATE = 0.08
 API_KEY = os.getenv('API_KEY')
 POSTER_ID = '2139'
-DESTINATION = '7560'
-API_URL = "https://politsim.ru/api/conversation-messages/"
+DESTINATION = '8050'
+API_URL = "https://politsim.ru/api/posts/"
 DB_CREDENTIALS = {
     'host': os.getenv('DB_HOST'),
     'user': os.getenv('DB_USER'),
@@ -67,6 +67,5 @@ if __name__ == "__main__":
         api_post = apiPublisher.send_message(message, API_KEY, POSTER_ID, DESTINATION, API_URL)
         if api_post is None:
             raise RuntimeError(fancy_text)
-        print(api_post)
 
         
