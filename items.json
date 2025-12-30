@@ -12,5 +12,6 @@
     "37": {"type": "mark", "value": 1000},
     "36": {"type": "mark", "value": 500},
     "41": {"type": "politsim", "value": 500},
-    "40": {"type": "politsim", "value": 100}
+    "40": {"type": "politsim", "value": 100},
+    "64": {"type": "politsim", "value": 100}
 }
